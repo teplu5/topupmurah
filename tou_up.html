@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Up Game ML</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #3a3a3a;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #4285f4;
+        }
+        .topup-option {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            text-align: center;
+        }
+        .topup-option button {
+            padding: 10px 20px;
+            background-color: #4285f4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .topup-option button:hover {
+            background-color: #357ae8;
+        }
+        .payment-method {
+            margin-top: 20px;
+        }
+        .payment-method label {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Top Up Game Mobile Legends</h1>
+    </header>
+    <div class="container">
+        <h2>Pilih Jumlah Top Up</h2>
+        <div class="topup-option">
+            <h3>45 Diamond</h3>
+            <p>Harga: Rp 10.000</p>
+            <button onclick="showPaymentForm('12')">Top Up</button>
+        </div>
+        <div class="topup-option">
+            <h3>88 Diamond</h3>
+            <p>Harga: Rp 20.000</p>
+            <button onclick="showPaymentForm('90')">Top Up</button>
+        </div>
+        <div class="topup-option">
+            <h3>150 Diamond</h3>
+            <p>Harga: Rp 50.000</p>
+            <button onclick="showPaymentForm('155')">Top Up</button>
+        </div>
+        <div class="topup-option">
+            <h3>320 Diamond</h3>
+            <p>Harga: Rp 100.000</p>
+            <button onclick="showPaymentForm('330')">Top Up</button>
+        </div>
+
+        <div id="payment-form" style="display:none; margin-top: 20px;">
+            <h2>Masukkan ID Akun</h2>
+            <input type="text" id="account-id" placeholder="ID Akun" required>
+            <div class="payment-method">
+                <h3>Pilih Metode Pembayaran:</h3>
+                <label><input type="radio" name="payment" value="dana"> DANA</label>
+                <label><input type="radio" name="payment" value="gopay"> GoPay</label>
+            </div>
+            <button onclick="processTopUp()">Konfirmasi Top Up</button>
+        </div>
+    </div>
+
+    <script>
+        function showPaymentForm(diamondAmount) {
+            document.getElementById('payment-form').style.display = 'block';
+            // Simpan jumlah diamond yang dipilih jika perlu
+            console.log("Jumlah Diamond yang dipilih: " + diamondAmount);
+        }
+
+        function processTopUp() {
+            var accountId = document.getElementById('account-id').value;
+            var paymentMethod = document.querySelector('input[name="payment"]:checked');
+
+            if (!accountId) {
+                alert("Silakan masukkan ID Akun.");
+                return;
+            }
+
+            if (!paymentMethod) {
+                alert("Silakan pilih metode pembayaran.");
+                return;
+            }
+
+            alert("Top Up berhasil!\nID Akun: " + accountId + "\nMetode Pembayaran: " + paymentMethod.value);
+            // Reset form setelah konfirmasi
+            document.getElementById('account-id').value = '';
+            document.getElementById('payment-form').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
